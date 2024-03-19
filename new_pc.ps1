@@ -1,11 +1,16 @@
-﻿# Get variables
+﻿#Get current PC name
+$current_name = $env:COMPUTERNAME
 
-#$current_name = $env:COMPUTERNAME
-#$change_name = Read-Host -Prompt "The current machine name is $current_name, Would you like to change it?"
+#Ask if user would like to change PC name
+$change_name = Read-Host -Prompt "The current machine name is $current_name, Would you like to change it? (y or n)"
 
-$new_machine_name = Read-Host -Prompt "Input the new machine name."
-
-exit
+if ($change_name -eq "y"){
+    #Get new machine name
+    $new_machine_name = Read-Host -Prompt "Input the new machine name."
+    # Rename machine
+    Write-Output "Renaming machine"
+    Rename-Computer -NewName $new_machine_name
+}
 
 Function Get-NewTimeZone {
     $zone=Read-Host "
@@ -24,35 +29,31 @@ Function Get-NewTimeZone {
 }
 
 $new_time_zone=Get-NewTimeZone
-
+exit
 #disable UAC
-echo "Disabling UAC"
+Write-Outpute-Output "Disabling UAC"
 Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
 
 # Change Power Settings
-echo "Adjusting power settings"
+Write-Output "Adjusting power settings"
 powercfg /change standby-timeout-ac 0
 powercfg /change standby-timeout-dc 0
 powercfg /change monitor-timeout-ac 0
 powercfg /change monitor-timeout-dc 0
 
 #Turn Off Windows Firewall
-echo "Turning off Windows Firewall"
+Write-Output "Turning off Windows Firewall"
 set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False 
 
 # Enabling RDP
-echo "Enabling RDP"
+Write-Output "Enabling RDP"
 Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
 
 # Set Time Zone
-echo "Setting Time Zone to:" $new_time_zone
+Write-Output "Setting Time Zone to:" $new_time_zone
 Set-TimeZone -Id $new_time_zone
 
-# Rename machine
-echo "Renaming machine"
-Rename-Computer -NewName $new_machine_name
-
 #Running Software installers
-echo "Installing Basic Software"
+Write-Output "Installing Basic Software"
 .\ninite_installer
 .\Reader_Install_Setup
