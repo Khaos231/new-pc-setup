@@ -1,7 +1,11 @@
 ﻿# Get variables
-#$change_name = Read-Host -Prompt "The current machine name is $env:COMPUTERNAME, Would you like to change it?"
+
+#$current_name = $env:COMPUTERNAME
+#$change_name = Read-Host -Prompt "The current machine name is $current_name, Would you like to change it?"
 
 $new_machine_name = Read-Host -Prompt "Input the new machine name."
+
+exit
 
 Function Get-NewTimeZone {
     $zone=Read-Host "
