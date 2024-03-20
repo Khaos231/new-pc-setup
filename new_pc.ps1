@@ -55,7 +55,7 @@ Set-TimeZone -Id $new_time_zone
 
 #Running Software installers
 Write-Output "Installing Basic Software"
-.\ninite_installer
-.\Reader_Install_Setup
+.\ninite
+.\adobe
 
 pause
