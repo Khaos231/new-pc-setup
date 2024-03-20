@@ -57,3 +57,5 @@ Set-TimeZone -Id $new_time_zone
 Write-Output "Installing Basic Software"
 .\ninite_installer
 .\Reader_Install_Setup
+
+pause
