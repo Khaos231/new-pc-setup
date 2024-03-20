@@ -29,7 +29,7 @@ Function Get-NewTimeZone {
 }
 
 $new_time_zone=Get-NewTimeZone
-exit
+
 #disable UAC
 Write-Outpute-Output "Disabling UAC"
 Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
