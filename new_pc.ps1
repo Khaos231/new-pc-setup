@@ -58,4 +58,8 @@ Write-Output "Installing Basic Software"
 .\ninite
 .\adobe
 
+#Setting execution policy back to restricted
+Write-Output "Setting Execution Policy to Restricted"
+set-executionpolicy restricted
+
 pause
