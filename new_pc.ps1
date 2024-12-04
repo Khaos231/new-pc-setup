@@ -53,9 +53,20 @@ Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' 
 Write-Output "Setting Time Zone to:" $new_time_zone
 Set-TimeZone -Id $new_time_zone
 
+#Enable System Restore
+Write-Output "Ensuring System Restore is Enabled"
+Checkpoint-Computer -Description "Origin"
+
 #Running Software installers
 Write-Output "Installing Basic Software"
 .\ninite
 .\adobe
+
+Write-Output "Please Allow Ninite and Adobe Installs to complete before continuing
+
+pause
+
+#Create Origin Restore Point
+Checkpoint-Computer -Description "Origin"
 
 pause
