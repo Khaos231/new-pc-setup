@@ -62,17 +62,15 @@ Write-Output "Installing Basic Software"
 .\ninite
 .\adobe
 
-<<<<<<< HEAD
 Write-Output "Please Allow Ninite and Adobe Installs to complete before continuing
 
 pause
 
 #Create Origin Restore Point
 Checkpoint-Computer -Description "Origin"
-=======
+
 #Setting execution policy back to restricted
 Write-Output "Setting Execution Policy to Restricted"
 set-executionpolicy restricted
->>>>>>> refs/remotes/origin/main
 
 pause
