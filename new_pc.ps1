@@ -55,7 +55,7 @@ Set-TimeZone -Id $new_time_zone
 
 #Enable System Restore
 Write-Output "Ensuring System Restore is Enabled"
-Checkpoint-Computer -Description "Origin"
+Enable-ComputerRestore -Drive C:
 
 #Running Software installers
 Write-Output "Installing Basic Software"
