@@ -62,7 +62,7 @@ Write-Output "Installing Basic Software"
 .\ninite
 .\adobe
 
-Write-Output "Please Allow Ninite and Adobe Installs to complete before continuing
+Write-Output "Please Allow Ninite and Adobe Installs to complete before continuing"
 
 pause
 
