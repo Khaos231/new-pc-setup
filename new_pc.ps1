@@ -49,6 +49,10 @@ set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False
 Write-Output "Enabling RDP"
 Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
 
+# Set NTP Servers
+Write-Output "Setting NTP Servers"
+Set-HcsNtpClientServerAddress -Primary "0.us.pool.ntp.org" -Secondary "1.us.pool.ntp.org, 2.us.pool.ntp.org, 3.us.pool.ntp.org"
+
 # Set Time Zone
 Write-Output "Setting Time Zone to:" $new_time_zone
 Set-TimeZone -Id $new_time_zone
