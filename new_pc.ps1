@@ -52,6 +52,7 @@ Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' 
 # Set NTP Servers
 Write-Output "Setting NTP Servers"
 w32tm /config /manualpeerlist:"0.us.pool.ntp.org, 1.us.pool.ntp.org, 2.us.pool.ntp.org, 3.us.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
+Restart-Service w32time
 
 # Set Time Zone
 Write-Output "Setting Time Zone to:" $new_time_zone
