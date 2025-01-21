@@ -51,6 +51,7 @@ Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' 
 
 # Set NTP Servers
 Write-Output "Setting NTP Servers"
+Start-Service w32time
 w32tm /config /manualpeerlist:"0.us.pool.ntp.org, 1.us.pool.ntp.org, 2.us.pool.ntp.org, 3.us.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
 Restart-Service w32time
 
@@ -61,6 +62,9 @@ Set-TimeZone -Id $new_time_zone
 #Enable System Restore
 Write-Output "Ensuring System Restore is Enabled"
 Enable-ComputerRestore -Drive C:
+
+#creating registry value to override default system restore point creation frequency
+New-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore" -Name "SystemRestorePointCreationFrequency" -Value "0" -PropertyType DWord
 
 #Running Software installers
 Write-Output "Installing Basic Software"
